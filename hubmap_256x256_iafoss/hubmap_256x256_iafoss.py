@@ -5,7 +5,9 @@ from glob import glob
 import numpy as np
 import tensorflow_datasets as tfds
 
-# TODO(hubmap_256x256_iafoss): Markdown description  that will appear on the catalog page.
+from tensorflow.io import decode_png
+from tensorflow.io import read_file
+
 _DESCRIPTION = """
 # TFDS for HuBMAP dataset made by `iafoss` and `joshi98kishan`.
 Train: 256x256
@@ -30,18 +32,15 @@ class Hubmap256x256Iafoss(tfds.core.GeneratorBasedBuilder):
 
   def _info(self) -> tfds.core.DatasetInfo:
     """Returns the dataset metadata."""
-    # TODO(hubmap_256x256_iafoss): Specifies the tfds.core.DatasetInfo object
     return tfds.core.DatasetInfo(
         builder=self,
         description=_DESCRIPTION,
         features=tfds.features.FeaturesDict({
-          "image": tfds.features.Image(shape=(256, 256, 3)),
-#          "mask": tfds.features.Image(shape=(256, 256, 1))
-            # These are the features of your dataset like images, labels ...
+          "image": tfds.features.Image(
+                    shape=(256, 256, 3), encoding_format='png'),
+          "mask": tfds.features.Image(
+                    shape=(256, 256, 1), encoding_format='png')
         }),
-        # If there's a common (input, target) tuple from the
-        # features, specify them here. They'll be used if
-        # `as_supervised=True` in `builder.as_dataset`.
         supervised_keys=("image", "mask"),  # e.g. ('image', 'label')
         homepage='https://www.kaggle.com/',
         citation=_CITATION,
@@ -75,11 +74,10 @@ class Hubmap256x256Iafoss(tfds.core.GeneratorBasedBuilder):
 
   def _generate_examples(self, path):
     """Yields examples."""
-    cv2 = tfds.core.lazy_imports.cv2
     def _decode(path):
-      img = cv2.imread(path, cv2.IMREAD_COLOR)
-      img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-      return img
+      img = read_file(path)
+      img = decode_png(img)
+      return img.numpy()
 
     train_base = _KAGGLE_TRAIN_DATA_NAME.split('/')[0]
     test_base = _KAGGLE_TEST_DATA_NAME.split('/')[0]
@@ -97,17 +95,13 @@ class Hubmap256x256Iafoss(tfds.core.GeneratorBasedBuilder):
 
     n = len(images_path)
     for i in range(n):
-      record = dict()
-
       img = _decode(images_path[i])
-      record['image'] = img
-
-#      if masks_path:
-#        mask = _decode(masks_path[i])
-#        record['mask'] = mask
-#      else:
-#        record['mask'] = np.zeros((256, 256, 1), dtype=np.uint8)
+      mask = (_decode(masks_path[i]) if masks_path is not None
+              else np.ones((256, 256, 1), dtype=np.uint8))
       fname = self._get_fname(images_path[i])
-
+      record = {
+        'image': img,
+        'mask': mask,
+      }
       yield fname, record
 
