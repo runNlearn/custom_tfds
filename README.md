@@ -12,7 +12,8 @@ and add a file of your token to `~/.kaggle/kaggle.json`.
 To download and generate tfrecords, go to the corresponding directory of dataset,
 and use `TFDS CLI`, for example:
 
+```console
   $ cd custom_tfds/hubmap_256x256_iafoss
   $ tfds build
-
+```
 
