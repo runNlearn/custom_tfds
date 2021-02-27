@@ -2,6 +2,7 @@
 These codes are used to generate *custom* tfds datasets.
 
 ## Prerequisites
+- [tensorflow](https://www.tensorflow.org) (just `tensorflow-cpu` is okay)
 - [tfds-nightly](https://github.com/tensorflow/datasets)
 - [kaggle API](https://www.kaggle.com/docs/api)
 
