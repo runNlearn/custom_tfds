@@ -17,3 +17,12 @@ and use `TFDS CLI`, for example:
   $ tfds build
 ```
 
+```python
+
+  train_ds = tfds.load('hubmap_kaggel/256x256',
+                       split='train')  # you can use `as_supervised=True`
+  train_ds = (train_ds.map(...).batch(...)
+              ...)
+  for data in train_ds:
+    ...
+```
