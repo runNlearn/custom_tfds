@@ -7,7 +7,9 @@ These codes are used to generate *custom* tfds datasets.
 
 ## Usage
 If you already have generated custom data on GCS or your local path, just use 
-`tfds.load(NAME_OF_DATA, data_dir=YOUR_PATH)`.
+`tfds.load(NAME_OF_DATA, data_dir=YOUR_PATH)`.  
+  
+#### Build from the ground
 First, make your own new token for kaggle API, check the details on [here](https://www.kaggle.com/docs/api),
 and add a file of your token to `~/.kaggle/kaggle.json`.
 
