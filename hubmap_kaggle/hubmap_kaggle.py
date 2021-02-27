@@ -63,6 +63,7 @@ class HubmapKaggle(tfds.core.GeneratorBasedBuilder):
                       shape=(None, None, 3), encoding_format='png'),
             'mask': tfds.features.Image(
                       shape=(None, None, 1), encoding_format='png'), 
+            'id': tfds.features.Text(),
         }),
         supervised_keys=('image', 'mask'),  # Set to `None` to disable
         homepage='https://kaggle/datasets/',
@@ -119,6 +120,7 @@ class HubmapKaggle(tfds.core.GeneratorBasedBuilder):
 
       fname = _get_fname(image_paths[i])
       record = {
+        'id': fname,
         'image': image,
         'mask': mask,
       }
