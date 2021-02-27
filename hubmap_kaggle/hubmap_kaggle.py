@@ -1,7 +1,6 @@
 """hubmap_kaggle dataset."""
 
 import os
-import io
 from glob import glob
 
 import numpy as np
@@ -116,7 +115,7 @@ class HubmapKaggle(tfds.core.GeneratorBasedBuilder):
     for i in range(n):
       image = open(image_paths[i], 'rb') 
       mask = (open(mask_paths[i], 'rb') if mask_paths is not None
-                else np.ones((256, 256, 1), dtype=np.uint8))
+                else np.ones((8, 8, 1), dtype=np.uint8))
 
       fname = _get_fname(image_paths[i])
       record = {
