@@ -1,13 +1,13 @@
-"""hubmap_256x256_iafoss dataset."""
+"""hubmap_kaggle dataset."""
 
 import tensorflow_datasets as tfds
-from . import hubmap_256x256_iafoss
+from . import hubmap_kaggle
 
 
-class Hubmap256x256IafossTest(tfds.testing.DatasetBuilderTestCase):
-  """Tests for hubmap_256x256_iafoss dataset."""
-  # TODO(hubmap_256x256_iafoss):
-  DATASET_CLASS = hubmap_256x256_iafoss.Hubmap256x256Iafoss
+class HubmapKaggleTest(tfds.testing.DatasetBuilderTestCase):
+  """Tests for hubmap_kaggle dataset."""
+  # TODO(hubmap_kaggle):
+  DATASET_CLASS = hubmap_kaggle.HubmapKaggle
   SPLITS = {
       'train': 3,  # Number of fake train example
       'test': 1,  # Number of fake test example
