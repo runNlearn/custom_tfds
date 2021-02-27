@@ -99,7 +99,7 @@ class HubmapKaggle(tfds.core.GeneratorBasedBuilder):
     """Yields examples."""
     def _get_fname(path):
       basename = os.path.basename(path)
-      fname = basename.split(os.path.sep)[0]
+      fname = basename.split('.')[0]
       return fname
 
     if split == 'train':
