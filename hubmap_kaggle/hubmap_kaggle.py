@@ -10,7 +10,7 @@ import tensorflow_datasets as tfds
 
 _DESCRIPTION = """
 # TFDS for HuBMAP dataset in `kaggle`.
-This dataset is build with the data processed by `iafoss` and `joshi98kishan`.
+This dataset is built of the data processed by `iafoss` and `joshi98kishan`.
 Image shapes:
   Train: 256/512/1024
   Test: 256
