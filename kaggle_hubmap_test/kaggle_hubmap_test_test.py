@@ -1,13 +1,13 @@
-"""hubmap_kaggle_test dataset."""
+"""kaggle_hubmap_test dataset."""
 
 import tensorflow_datasets as tfds
-from . import hubmap_kaggle_test
+from . import kaggle_hubmap_test
 
 
-class HubmapKaggleTestTest(tfds.testing.DatasetBuilderTestCase):
-  """Tests for hubmap_kaggle_test dataset."""
-  # TODO(hubmap_kaggle_test):
-  DATASET_CLASS = hubmap_kaggle_test.HubmapKaggleTest
+class KaggleHubmapTestTest(tfds.testing.DatasetBuilderTestCase):
+  """Tests for kaggle_hubmap_test dataset."""
+  # TODO(kaggle_hubmap_test):
+  DATASET_CLASS = kaggle_hubmap_test.KaggleHubmapTest
   SPLITS = {
       'train': 3,  # Number of fake train example
       'test': 1,  # Number of fake test example

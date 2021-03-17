@@ -18,13 +18,13 @@ To download and generate tfrecords, go to the corresponding directory of the
 dataset, and use `TFDS CLI`, for example:
 
 ```console
-  $ cd custom_tfds/hubmap_kaggle_train
+  $ cd custom_tfds/kaggle_hubmap_train
   $ tfds build
 ```
 
 ```python
 
-  train_ds = tfds.load('hubmap_kaggel_train/256x256',
+  train_ds = tfds.load('kaggle_hubmap_train/256x256',
                        split='train')  # you can use `as_supervised=True`
   train_ds = (train_ds.map(...).batch(...)
               ...)
